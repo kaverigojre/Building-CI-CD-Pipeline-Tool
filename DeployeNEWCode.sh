@@ -2,7 +2,7 @@
 
 
 
-DEPLOY_DIR="C:\Users\Kaver\Building-CI-CD-Pipeline-Tool\awesomeweb" #code will be deployed here
+DEPLOY_DIR="/var/www/html" #code will be deployed here
 
 GIT_REPO="https://github.com/kaverigojre/Building-CI-CD-Pipeline-Tool"
 
@@ -24,13 +24,6 @@ updating_code()
 }
 
 
-installing_dependencies() 
-{
-    #installing dependancies in this function if required for code to run
-    echo "Installing dependencies..."
-     
-}
-
 
 restarting_nginx() 
 {
@@ -39,14 +32,7 @@ restarting_nginx()
     sudo systemctl restart nginx
 }
 
-custom_deploy_steps()
- {
-    echo "Executing custom deployment steps..."
-    # Add any custom deployment steps here
-}
 
-
-echo "Starting deployment..." # Main deployment steps
 
 # updating the Git repository
 if [ -d "$DEPLOY_DIR" ]; then
@@ -56,8 +42,5 @@ else
 fi
 
 updating_code
-installing_dependencies
-custom_deploy_steps
 restarting_nginx
-
 echo "Deployment completed successfully!"

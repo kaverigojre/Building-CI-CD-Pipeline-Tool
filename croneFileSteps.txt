@@ -1,0 +1,11 @@
+1. Open crontab:
+
+crontab -e
+
+2. Add Cron Job:
+
+Add a line to run the Python script at regular intervals:
+
+0 * * * * /usr/bin/python3 /Building-CI-CD-Pipeline-Tool/CheckCommits.py
+
+Save and exit
