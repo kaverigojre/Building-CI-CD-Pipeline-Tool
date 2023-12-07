@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def get_latest_commit(repo_owner, repo_name, access_token):
@@ -17,12 +18,19 @@ def get_latest_commit(repo_owner, repo_name, access_token):
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
         # Parse the response JSON
+        
         commits = response.json()
+        more_data = json.dumps(commits)
+        
+        #committer_name = commits.get("commit", {}).get("committer", {}).get("name")
+
+        #committer_name = latest_commit.get("commit", {}).get("committer", {}).get("name")
+
 
         # Check if there are any commits
         if commits:
             # Return the latest commit SHA
-            return commits[0]['sha']
+            return commits[0]['sha'], more_data
         else:
             print("No commits found in the repository.")
             return None
@@ -34,11 +42,11 @@ def get_latest_commit(repo_owner, repo_name, access_token):
 def main():
     # GitHub repository information
     repo_owner = 'kaverigojre'
-    repo_name = 'git_assignment_HeroVired'
+    repo_name = 'Building-CI-CD-Pipeline-Tool'
     
     # GitHub personal access token
     # Note: Make sure to keep your access token secure and do not share it publicly
-    access_token = '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'
+    access_token = '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'
 
     # Get the latest commit SHA
     latest_commit_sha = get_latest_commit(repo_owner, repo_name, access_token)
